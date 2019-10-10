@@ -20,4 +20,17 @@
 		
 		
 NOTE: application should be terminate after testing because it is chargeable
+
+
+-----------------------------------------------------------------------------
+Security Group Configuration between - Server AWS Elastic Beanstalk and AWS RDS Postgres db
+ec2
+resources
+running instances
+security groups
+click on db secuirty group 
+and Inbound
+copy security group id of spring boot application 
+go to security group of rds - db inbound edit - port 5432 source - security group id of spring boot application
+ 
 		

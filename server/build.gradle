@@ -13,10 +13,9 @@ repositories {
 }
 
 dependencies {
-	compile files('libs/ojdbc14-10g.jar')
-	compile files('libs/ojdbc6.jar')
-	compile files('libs/ojdbc7.jar')
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+// https://mvnrepository.com/artifact/org.postgresql/postgresql
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.8'
 }
