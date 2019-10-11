@@ -17,7 +17,8 @@ class LoginLayout extends React.Component {
   onSubmitHandler = e =>{
     e.preventDefault()
     console.log(this.state)
-    axios.post('http://localhost:9410/login/user',this.state,{headers: {"Access-Control-Allow-Origin": "*"}})
+	axios.get('http://wsaams-env.k57p24vaia.ap-south-1.elasticbeanstalk.com/testdb/time')	
+    //axios.post('http://localhost:9410/login/user',this.state,{headers: {"Access-Control-Allow-Origin": "*"}})
     .then(response => {
       console.log(response)
     })
