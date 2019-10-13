@@ -1,0 +1,75 @@
+1.	clone project from github.com 
+	.git - https://github.com/ravindraAmbati/wsaams.git
+
+2.	run gradle to generate jar 
+	cmd> gradle clean build --info
+	jar should be created under folder - build/libs/wsaams-0.0.1-SNAPSHOT.jar
+	
+3.	deploy into AWS Elastic Beanstalk
+	login into AWS Management Console
+	go to Elastic Beanstalk - click on Get Started(if none apps are running)
+	fill form - application name: wsaams
+				platform: Java
+				application code: upload Jar what you have generated in step 2
+	click on create application
+	after sometime application will be created and look for endpoint url 
+	hit endpoint url to test it 
+	terminate the application after testing
+		go to actions - select - delete
+		type name of the application and confirm to delete application
+		
+		
+NOTE: application should be terminate after testing because it is chargeable
+
+-------------------------------------------------------------------------------------------------
+Creating AWS RDS - Relational Database Service 
+-------------------------------------------------------------------------------------------------
+Login into AWS Console - 
+>RDS
+>Create DB instances
+>Select postgres
+>Select version 11.5
+>Select free tier 
+>Select database name, passwords, port
+>Grab endpoint - database and port
+-------------------------------------------------------------------------------------------------
+Creating and deploying Spring boot application in AWS EBS - Elastic Beanstalk 
+-------------------------------------------------------------------------------------------------
+>replace localhost with endpoint and port of AWS RDS Postgres Database
+>build jar > Gradle clean build --info
+>jar will be generated under build/libs/*.jar
+>run locally - java -jar *.jar
+>test it - not db related
+-----------------------------------
+Login into AWS Console - 
+>EBS
+>Create application
+>Select platform - Java
+>upload jar
+>Grab endpoint and test it
+-----------------------------------------------------------------------------
+Security Group Configuration between - Server AWS Elastic Beanstalk and AWS RDS Postgres db
+ec2
+resources
+running instances
+security groups
+click on db secuirty group 
+and Inbound
+copy security group id of spring boot application 
+go to security group of rds - db inbound edit - port 5432 source - security group id of spring boot application
+>test ebs application - db related
+--------------------------------------------------------------------------------------------------
+UI deployment in AWS Amplify
+--------------------------------------------------------------------------------------------------
+>run - npm start
+>test it
+>stop it if runs successfully and expected
+>run - npm run build
+>build folder will be created
+>Login into AWS Console
+>deploy - get started
+>select code provider - github or build folder upload
+>upload build folder whole
+>grab endpoint and test it
+
+TODO: http is not getting hit by UI since it is hosted on https
