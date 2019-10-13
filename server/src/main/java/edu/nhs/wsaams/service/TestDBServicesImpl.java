@@ -10,7 +10,7 @@ public class TestDBServicesImpl {
     @Autowired
     private TestDBRepositoryImpl repository;
 
-    public String getCurrentTimeFromDB(){
+    public String getCurrentTimeFromDB() {
         return repository.getCurrentTime();
     }
 }

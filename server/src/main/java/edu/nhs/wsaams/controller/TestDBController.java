@@ -16,12 +16,12 @@ public class TestDBController {
     private TestDBServicesImpl service;
 
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() {
         return "Hello";
     }
 
     @GetMapping("/time")
-    public String getCurrentTime(){
+    public String getCurrentTime() {
         return service.getCurrentTimeFromDB();
     }
 
