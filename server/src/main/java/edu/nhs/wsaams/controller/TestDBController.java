@@ -1,6 +1,6 @@
 package edu.nhs.wsaams.controller;
 
-import edu.nhs.wsaams.service.TestDBServicesImpl;
+import edu.nhs.wsaams.service.implementation.TestDBServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -7,15 +7,22 @@ import org.springframework.stereotype.Component;
 public class Loginuser {
 
     private String id;
+    private String name;
     private String username;
     private String password;
     private String status;
     private String loginTime;
     private String logoffTime;
     private String lastAttemptStatus;
-
-    @Autowired
     private DBLog dbLog;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getId() {
         return id;
