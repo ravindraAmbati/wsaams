@@ -8,9 +8,9 @@ public interface LoginController extends Controller<Loginuser> {
 
     String isValidUser(Loginuser loginuser);
 
-    List<Loginuser> viewByLastAttemptStatus(Loginuser loginuser);
+    List<Loginuser> viewByLastAttemptStatus(String lastAttemptStatus);
 
     String updatePassword(Loginuser loginuser);
 
-    Loginuser viewByUsername(Loginuser loginuser);
+    Loginuser viewByUsername(String username);
 }

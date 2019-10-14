@@ -26,11 +26,11 @@ public class LoginControllerImpl implements LoginController {
         controllers.put("/removeAll", "GET");
         controllers.put("/validate", "POST-Loginuser");
         controllers.put("/create", "POST-Loginuser");
-        controllers.put("/id", "POST-id");
-        controllers.put("/username", "POST-id");
-        controllers.put("/status", "POST-status");
-        controllers.put("/lastAttemptStatus", "POST-lastAttemptStatus");
-        controllers.put("/remove", "POST-id");
+        controllers.put("/id", "PUT-id");
+        controllers.put("/username", "PUT-username");
+        controllers.put("/status", "PUT-status");
+        controllers.put("/lastAttemptStatus", "PUT-lastAttemptStatus");
+        controllers.put("/remove", "PUT-id");
         controllers.put("/updatePassword", "POST-id | password");
         controllers.put("/updateStatus", "POST-id | status");
     }
@@ -54,7 +54,7 @@ public class LoginControllerImpl implements LoginController {
     }
 
     @Override
-    @GetMapping("/removeAll")
+    @DeleteMapping("/removeAll")
     public String removeAll() {
         return service.deleteAll();
     }
@@ -72,33 +72,33 @@ public class LoginControllerImpl implements LoginController {
     }
 
     @Override
-    @PostMapping(path = "/id", consumes = "application/json", produces = "application/json")
-    public Loginuser viewById(@RequestBody Loginuser loginUser) {
-        return service.getById(loginUser.getId());
+    @PutMapping(path = "/{id}", consumes = "application/json", produces = "application/json")
+    public Loginuser viewById(@PathVariable String id) {
+        return service.getById(id);
     }
 
     @Override
-    @PostMapping(path = "/username", consumes = "application/json", produces = "application/json")
-    public Loginuser viewByUsername(@RequestBody Loginuser loginUser) {
-        return service.getByUsername(loginUser.getUsername());
+    @PutMapping(path = "/username/{username}", consumes = "application/json", produces = "application/json")
+    public Loginuser viewByUsername(@PathVariable String username) {
+        return service.getByUsername(username);
     }
 
     @Override
-    @PostMapping(path = "/status", consumes = "application/json", produces = "application/json")
-    public List<Loginuser> viewByStatus(@RequestBody Loginuser loginUser) {
-        return service.getByStatus(loginUser.getStatus());
+    @PutMapping(path = "/status/{status}", consumes = "application/json", produces = "application/json")
+    public List<Loginuser> viewByStatus(@PathVariable String status) {
+        return service.getByStatus(status);
     }
 
     @Override
-    @PostMapping(path = "/lastAttemptStatus", consumes = "application/json", produces = "application/json")
-    public List<Loginuser> viewByLastAttemptStatus(@RequestBody Loginuser loginUser) {
-        return service.getByLastAttemptStatus(loginUser.getLastAttemptStatus());
+    @PutMapping(path = "/lastAttemptStatus/{lastAttemptStatus}", consumes = "application/json", produces = "application/json")
+    public List<Loginuser> viewByLastAttemptStatus(@PathVariable String lastAttemptStatus) {
+        return service.getByLastAttemptStatus(lastAttemptStatus);
     }
 
     @Override
-    @PostMapping(path = "/remove", consumes = "application/json", produces = "application/json")
-    public String removeById(@RequestBody Loginuser loginUser) {
-        return service.delete(loginUser.getId());
+    @DeleteMapping(path = "/remove/{id}", consumes = "application/json", produces = "application/json")
+    public String removeById(@PathVariable String id) {
+        return service.delete(id);
     }
 
     @Override
