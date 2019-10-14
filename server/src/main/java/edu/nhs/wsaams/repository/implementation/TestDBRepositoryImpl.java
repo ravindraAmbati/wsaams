@@ -1,4 +1,4 @@
-package edu.nhs.wsaams.repository;
+package edu.nhs.wsaams.repository.implementation;
 
 import edu.nhs.wsaams.repository.statement.TestDBStatements;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
 create table loginuser(
 id varchar(50) not null primary key,
+name varchar(50) not null,
 username varchar(50) not null unique,
 password varchar(50) not null,
 status varchar(1),
@@ -10,4 +11,4 @@ timestamp varchar(50),
 application varchar(50),
 machinename varchar(50),
 userid varchar(50)
-)
+);

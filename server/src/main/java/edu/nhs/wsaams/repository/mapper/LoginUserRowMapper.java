@@ -12,6 +12,7 @@ public class LoginUserRowMapper implements RowMapper<Loginuser> {
     public Loginuser mapRow(ResultSet rs, int rowNum) throws SQLException {
         Loginuser loginuser = new Loginuser();
         loginuser.setId(rs.getString("id"));
+        loginuser.setName(rs.getString("name"));
         loginuser.setUsername(rs.getString("username"));
         loginuser.setPassword(rs.getString("password"));
         loginuser.setStatus(rs.getString("status"));

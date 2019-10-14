@@ -1,6 +1,6 @@
-package edu.nhs.wsaams.service;
+package edu.nhs.wsaams.service.implementation;
 
-import edu.nhs.wsaams.repository.TestDBRepositoryImpl;
+import edu.nhs.wsaams.repository.implementation.TestDBRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,8 @@
-package edu.nhs.wsaams.repository;
+package edu.nhs.wsaams.repository.implementation;
 
 import edu.nhs.wsaams.entity.DBLog;
 import edu.nhs.wsaams.entity.Loginuser;
+import edu.nhs.wsaams.repository.LoginRepository;
 import edu.nhs.wsaams.repository.mapper.LoginUserRowMapper;
 import edu.nhs.wsaams.repository.statement.LoginuserStatements;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,12 @@ public class LoginRepositoryImpl implements LoginRepository {
     }
 
     @Override
+    public boolean create() {
+        this.jdbcTemplate.execute(LoginuserStatements.CREATE);
+        return 0 == this.jdbcTemplate.queryForObject(LoginuserStatements.TEST,Long.class);
+    }
+
+    @Override
     public List<Loginuser> findAll() {
         return jdbcTemplate.query(LoginuserStatements.FIND_ALL, new LoginUserRowMapper());
     }
@@ -46,7 +53,7 @@ public class LoginRepositoryImpl implements LoginRepository {
     public boolean save(Loginuser loginUser) {
         DBLog dbLog = DBLog.getDBLog(loginUser.getId());
         loginUser.setDBLog(dbLog);
-        return 1 == jdbcTemplate.update(LoginuserStatements.SAVE, loginUser.getId(), loginUser.getUsername(), loginUser.getPassword(), loginUser.getStatus(), loginUser.getLoginTime(), loginUser.getLogoffTime(), loginUser.getLastAttemptStatus(), loginUser.getDBLog().getTimestamp(), loginUser.getDBLog().getApplication(), loginUser.getDBLog().getMachineName(), loginUser.getDBLog().getUserId());
+        return 1 == jdbcTemplate.update(LoginuserStatements.SAVE, loginUser.getId(), loginUser.getName(), loginUser.getUsername(), loginUser.getPassword(), loginUser.getStatus(), loginUser.getLoginTime(), loginUser.getLogoffTime(), loginUser.getLastAttemptStatus(), loginUser.getDBLog().getTimestamp(), loginUser.getDBLog().getApplication(), loginUser.getDBLog().getMachineName(), loginUser.getDBLog().getUserId());
     }
 
     @Override
@@ -54,6 +61,13 @@ public class LoginRepositoryImpl implements LoginRepository {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("id", id);
         return namedParameterJdbcTemplate.queryForObject(LoginuserStatements.FIND_BY_ID, paramMap, new LoginUserRowMapper());
+    }
+
+    @Override
+    public List<Loginuser> findByName(String name) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("name", name);
+        return namedParameterJdbcTemplate.query(LoginuserStatements.FIND_BY_NAME, paramMap, new LoginUserRowMapper());
     }
 
     @Override

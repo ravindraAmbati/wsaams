@@ -4,27 +4,15 @@ import edu.nhs.wsaams.entity.Loginuser;
 
 import java.util.List;
 
-public interface LoginService {
+public interface LoginService extends Service<Loginuser>{
 
-    String validate(Loginuser loginUser);
+    String validate(String username,String password);
 
-    List<Loginuser> getAll();
+    Loginuser getByUsername(String username);
 
-    String save(Loginuser loginUser);
+    List<Loginuser> getByLastAttemptStatus(String lastAttemptStatus);
 
-    Loginuser getById(Loginuser loginUser);
+    String delete(String id);
 
-    Loginuser getByUsername(Loginuser loginUser);
-
-    List<Loginuser> getByStatus(Loginuser loginUser);
-
-    List<Loginuser> getByLastAttemptStatus(Loginuser loginUser);
-
-    String delete(Loginuser loginUser);
-
-    String updatePassword(Loginuser loginUser);
-
-    String updateStatus(Loginuser loginUser);
-
-    String deleteAll();
+    String updatePassword(String id,String password);
 }
