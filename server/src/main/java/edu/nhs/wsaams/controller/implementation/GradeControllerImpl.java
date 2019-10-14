@@ -64,7 +64,7 @@ public class GradeControllerImpl implements GradeController {
     }
 
     @Override
-    @PostMapping(path = "/{id}", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "/id", consumes = "application/json", produces = "application/json")
     public Grade viewById(@RequestBody Grade grade) {
         return service.getById(grade.getId());
     }
