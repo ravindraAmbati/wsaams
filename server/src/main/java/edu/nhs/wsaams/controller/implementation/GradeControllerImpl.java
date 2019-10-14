@@ -25,10 +25,10 @@ public class GradeControllerImpl implements GradeController {
         controllers.put("/view", "GET");
         controllers.put("/removeAll", "GET");
         controllers.put("/create", "POST-Grade");
-        controllers.put("/id", "POST-id");
-        controllers.put("/empId", "POST-empId");
-        controllers.put("/status", "POST-status");
-        controllers.put("/remove", "POST-id");
+        controllers.put("/id", "PUT-id");
+        controllers.put("/empId", "PUT-empId");
+        controllers.put("/status", "PUT-status");
+        controllers.put("/remove", "PUT-id");
         controllers.put("/updateEmployeeId", "POST-id | employeeId");
         controllers.put("/updateStatus", "POST-id | status");
     }
@@ -52,7 +52,7 @@ public class GradeControllerImpl implements GradeController {
     }
 
     @Override
-    @GetMapping("/removeAll")
+    @DeleteMapping("/removeAll")
     public String removeAll() {
         return service.deleteAll();
     }
@@ -64,27 +64,27 @@ public class GradeControllerImpl implements GradeController {
     }
 
     @Override
-    @PostMapping(path = "/{id}", consumes = "application/json", produces = "application/json")
-    public Grade viewById(@RequestBody Grade grade) {
-        return service.getById(grade.getId());
+    @PutMapping(path = "/{id}", consumes = "application/json", produces = "application/json")
+    public Grade viewById(@PathVariable String id) {
+        return service.getById(id);
     }
 
     @Override
-    @PostMapping(path = "/empId", consumes = "application/json", produces = "application/json")
-    public List<Grade> viewByEmployeeId(@RequestBody Grade grade) {
-        return service.getByEmployeeId(grade.getEmployeeId());
+    @PutMapping(path = "/empId/{empId}", consumes = "application/json", produces = "application/json")
+    public List<Grade> viewByEmployeeId(@PathVariable String empId) {
+        return service.getByEmployeeId(empId);
     }
 
     @Override
-    @PostMapping(path = "/status", consumes = "application/json", produces = "application/json")
-    public List<Grade> viewByStatus(@RequestBody Grade grade) {
-        return service.getByStatus(grade.getStatus());
+    @PutMapping(path = "/status/{status}", consumes = "application/json", produces = "application/json")
+    public List<Grade> viewByStatus(@PathVariable String status) {
+        return service.getByStatus(status);
     }
 
     @Override
-    @PostMapping(path = "/remove", consumes = "application/json", produces = "application/json")
-    public String removeById(@RequestBody Grade grade) {
-        return service.delete(grade.getId());
+    @DeleteMapping(path = "/remove/{id}", consumes = "application/json", produces = "application/json")
+    public String removeById(@PathVariable String id) {
+        return service.delete(id);
     }
 
     @Override

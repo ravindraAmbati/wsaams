@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface GradeController extends Controller<Grade>{
 
-    List<Grade> viewByEmployeeId(Grade grade);
+    List<Grade> viewByEmployeeId(String empId);
 
     String updateEmployeeId(Grade grade);
 }

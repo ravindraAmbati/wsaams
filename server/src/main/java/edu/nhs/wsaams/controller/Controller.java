@@ -14,11 +14,11 @@ public interface Controller<T> {
     
     String create(T t); 
     
-    T viewById(T t);
+    T viewById(String id);
     
-    List<T> viewByStatus(T t);
+    List<T> viewByStatus(String status);
     
-    String removeById(T t);
+    String removeById(String id);
 
     String updateStatus(T t);
 }
